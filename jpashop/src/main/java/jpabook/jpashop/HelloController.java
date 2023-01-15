@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HelloController {
     @GetMapping("hello")
-                    // Model 객체란 ? : 값을 주어 전달할 뷰에 데이터를 전달한다.
-    public String hello(Model model){
+    // Model 객체란 ? : 값을 주어 전달할 뷰에 데이터를 전달한다.
+    public String hello(Model model) {
         model.addAttribute("data", "hello");
 
         return "hello";
