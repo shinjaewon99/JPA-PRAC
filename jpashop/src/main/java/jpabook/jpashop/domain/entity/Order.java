@@ -1,6 +1,7 @@
 package jpabook.jpashop.domain.entity;
 
 
+import jpabook.jpashop.domain.entity.status.OrderStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,6 +9,8 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import static javax.persistence.FetchType.*;
 
 @Entity
 @Table(name = "orders")
@@ -26,14 +29,21 @@ public class Order {
     private Long id;
 
 
-    @ManyToOne // order입장에서는 many(주문)이 one(한명의 회원)한테 오는것임으로 ManyToOne
+    @ManyToOne (fetch = LAZY)// order입장에서는 many(주문)이 one(한명의 회원)한테 오는것임으로 ManyToOne
     @JoinColumn(name = "member_id") // Member의 Pk를 Join해준다,
     private Member member;
 
-    @OneToMany(mappedBy = "order")
+   /*
+    @ManyToOne(fetch = FetchType.EAGER)
+    JPQL select o From order o; -> SQL select * from order
+    즉시로딩(EAGER)를 사용하게되면은 SQL이 날라갈때는 Order만 조회하는것인데,
+    단방쿼리가 100개가 날라간다.
+    */
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    @OneToOne
+    @OneToOne(fetch = LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
 
@@ -41,6 +51,22 @@ public class Order {
 
     @Enumerated(EnumType.STRING)
     private OrderStatus status; // 주문상태[ORDER, CANCEL]
+
+
+    // ==연관관계 편의 메서드==// 양방향일경우
+    public void setMember(Member member){
+        this.member = member;
+        member.getOrders().add(this);
+    }
+    public void addOrderItem(OrderItem orderItem){
+        orderItems.add(orderItem);
+        orderItem.setOrder(this);
+    }
+
+    public void setDelivery(Delivery delivery){
+        this.delivery = delivery;
+        delivery.setOrder(this);
+    }
 
 
 }

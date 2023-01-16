@@ -1,10 +1,13 @@
 package jpabook.jpashop.domain.entity;
 
 import jpabook.jpashop.domain.Address;
+import jpabook.jpashop.domain.entity.status.DeliveryStatus;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+
+import static javax.persistence.FetchType.*;
 
 @Entity
 @Getter @Setter
@@ -15,7 +18,7 @@ public class Delivery {
     @Column(name = "delivery_id")
     private Long id;
 
-    @OneToOne(mappedBy = "delivery") // 하나의 주문(order)에 하나의 배송(delivery)
+    @OneToOne(mappedBy = "delivery", fetch = LAZY) // 하나의 주문(order)에 하나의 배송(delivery)
     private Order order;
 
     @Embedded
