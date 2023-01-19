@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static javax.persistence.FetchType.*;
+import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @Getter
@@ -26,8 +26,8 @@ public class Category {
     @ManyToMany // N:N 관계
     // N:N 관계에서는 JoinColumn이 아닌 JoinTable을 사용해 연관관계를 매핑한다.
     @JoinTable(name = "category_item",
-    joinColumns = @JoinColumn(name = "category_id"),
-    inverseJoinColumns = @JoinColumn(name = "item_id"))
+            joinColumns = @JoinColumn(name = "category_id"),
+            inverseJoinColumns = @JoinColumn(name = "item_id"))
     private List<Item> items = new ArrayList<>();
 
 
@@ -43,7 +43,7 @@ public class Category {
 
 
     // 연관관계 편의 메서드//
-    public void addChildCategory(Category child){
+    public void addChildCategory(Category child) {
         this.child.add(child);
         child.setParent(this);
     }
