@@ -12,10 +12,10 @@ spring:
 
     properties:
       hibernate:
-#      show_sql: true  # sout으로 SQL이 찍힌다.
+      #      show_sql: true  # sout으로 SQL이 찍힌다.
       format_sql: true
 
 logging.level:
-    org.hibernate.SQL: debug  # hirbernate, Jpa가 생성하는 sql문이 "로그"로 찍힌다.
-    org.hibernate.type: trace
+  org.hibernate.SQL: debug  # hirbernate, Jpa가 생성하는 sql문이 "로그"로 찍힌다.
+  org.hibernate.type: trace
 
