@@ -20,11 +20,12 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final MemberRepository memberRepository;
     private final ItemRepository itemRepository;
+
     /*
-    * 주문
-    * */
+     * 주문
+     * */
     @Transactional
-    public Long order(Long memberId, Long itemId, int count){
+    public Long order(Long memberId, Long itemId, int count) {
 
         // 엔티티 조회
         Member member = memberRepository.findOne(memberId);
@@ -49,7 +50,7 @@ public class OrderService {
 
     //취소
     @Transactional
-    public void cancelOrder(Long orderId){
+    public void cancelOrder(Long orderId) {
         // 주문 Entity 조회
         Order order = orderRepository.findOne(orderId);
         // 주문 취소
