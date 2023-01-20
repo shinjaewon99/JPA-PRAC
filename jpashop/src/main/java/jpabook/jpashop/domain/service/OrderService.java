@@ -5,12 +5,16 @@ import jpabook.jpashop.domain.entity.Member;
 import jpabook.jpashop.domain.entity.Order;
 import jpabook.jpashop.domain.entity.OrderItem;
 import jpabook.jpashop.domain.entity.item.Item;
+import jpabook.jpashop.domain.entity.status.DeliveryStatus;
 import jpabook.jpashop.domain.repository.ItemRepository;
 import jpabook.jpashop.domain.repository.MemberRepository;
 import jpabook.jpashop.domain.repository.OrderRepository;
+import jpabook.jpashop.domain.repository.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -34,6 +38,7 @@ public class OrderService {
         //배송정보 생성
         Delivery delivery = new Delivery();
         delivery.setAddress(member.getAddress());
+        delivery.setStatus(DeliveryStatus.READY);
 
         //주문상품 생성
         OrderItem orderItem = OrderItem.createOrderItem(item, item.getPrice(), count);
@@ -58,11 +63,9 @@ public class OrderService {
     }
 
     //검색
-/*
 
-    public Order searchOrder(OrderSeach orderSeach){
-        return orderRepository.findAll();
+    public List<Order> findOrders(OrderSearch orderSearch){
+        return orderRepository.findAllByString(orderSearch);
     }
-*/
 
 }

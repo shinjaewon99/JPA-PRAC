@@ -88,6 +88,7 @@ public class Order {
     /*
     주문 취소
     * */
+    // !! 중요 Entity 값만 바꿔 놨는데 "변경 감지"가 되어 JPA가 자동으로 업데이트 하였다.
     public void cancel() {
         if (delivery.getStatus() == DeliveryStatus.COMP) {
             throw new IllegalStateException("이미 배송완료된 상품은 취소가 불가능합니다.");
