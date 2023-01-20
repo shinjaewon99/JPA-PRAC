@@ -7,6 +7,11 @@
 # DataBase
 H2
 
+# Build.gradle
+1. Spring - Web
+2. thymeleaf
+3. jpa
+
 # Entity 모델
 ![1](https://user-images.githubusercontent.com/95893341/213695113-14b43b45-fe54-411c-b067-1fb51853b877.PNG)
 
