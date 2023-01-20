@@ -4,5 +4,7 @@
 # Entity 모델
 ![1](https://user-images.githubusercontent.com/95893341/213695113-14b43b45-fe54-411c-b067-1fb51853b877.PNG)
 
+# 테이블 분석
+
 # 실행 화면
 ![1](https://user-images.githubusercontent.com/95893341/213695412-449196ec-0580-4939-b158-5246dc47627b.PNG)
