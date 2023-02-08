@@ -3,7 +3,9 @@ package jpabook.jpashop.domain.entity;
 
 import jpabook.jpashop.domain.entity.status.DeliveryStatus;
 import jpabook.jpashop.domain.entity.status.OrderStatus;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -21,7 +23,7 @@ Order라는 어노테이션이 사용된다.
 */
 @Getter
 @Setter
-
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Order {
 
     @Id
