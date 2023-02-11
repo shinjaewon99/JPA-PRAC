@@ -1,5 +1,6 @@
 package jpabook.jpashop.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jpabook.jpashop.domain.Address;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,6 +33,7 @@ public class Member {
     /* 하나의 회원이 주문(orders)를 많이 할수있음으로 One(회원)To Many(주문)
        order테이블에 있는 member필드에 의해서 mapping이 된것이다. (연관관계 주인은 Order테이블)
     */
+    @JsonIgnore
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
 

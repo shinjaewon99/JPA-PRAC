@@ -1,5 +1,6 @@
 package jpabook.jpashop.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jpabook.jpashop.domain.Address;
 import jpabook.jpashop.domain.entity.status.DeliveryStatus;
 import lombok.Getter;
@@ -21,6 +22,7 @@ public class Delivery {
     private Long id;
 
     @OneToOne(mappedBy = "delivery", fetch = LAZY) // 하나의 주문(order)에 하나의 배송(delivery)
+    @JsonIgnore
     private Order order;
 
     @Embedded

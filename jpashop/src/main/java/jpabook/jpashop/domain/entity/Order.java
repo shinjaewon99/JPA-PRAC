@@ -1,6 +1,7 @@
 package jpabook.jpashop.domain.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jpabook.jpashop.domain.entity.status.DeliveryStatus;
 import jpabook.jpashop.domain.entity.status.OrderStatus;
 import lombok.AccessLevel;

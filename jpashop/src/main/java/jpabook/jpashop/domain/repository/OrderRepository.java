@@ -32,6 +32,7 @@ public class OrderRepository {
                 .setMaxResults(1000) //최대 1000건
                 .getResultList();
     }
+
     public List<Order> findAllByString(OrderSearch orderSearch) {
         //language=JPAQL
         String jpql = "select o From Order o join o.member m";
@@ -66,4 +67,16 @@ public class OrderRepository {
         }
         return query.getResultList();
     }
+
+    public List<Order> findAllWithMemberDelivery() {
+        // Order의 inner 조인을 하여 엮여있는거를 한방 쿼리로 불러온다.
+        return em.createQuery(
+                "select o from Order o" +
+                        " join fetch o.member m " +
+                        " join fetch o.delivery d", Order.class
+
+        ).getResultList();
+    }
+
+
 }
