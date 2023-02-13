@@ -16,6 +16,8 @@ spring:
       hibernate:
       #      show_sql: true  # sout으로 SQL이 찍힌다.
       format_sql: true
+      # 컬렉션 조회시 페이징 처리를 하기위해 batch_fetch_size 설정
+      default_batch_fetch_size: 100
 
 logging.level:
   org.hibernate.SQL: debug  # hirbernate, Jpa가 생성하는 sql문이 "로그"로 찍힌다.
